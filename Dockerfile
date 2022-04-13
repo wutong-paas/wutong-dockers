@@ -1,0 +1,2 @@
+ARG FROM
+FROM --platform=$TARGETPLATFORM ${FROM}

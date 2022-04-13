@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM --platform=$TARGETPLATFORM alpine:3.15
 LABEL email="dingpeng24001@talkweb.com.cn"
 
 # china repositories mirror

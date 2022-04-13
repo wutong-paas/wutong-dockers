@@ -9,7 +9,7 @@
 
 export NAMESPACE=openresty
 export VERSION=1.19.3.2-alpine
-docker buildx create --use --name mybuilder
+docker buildx create --use --name openrestybuilder
 docker buildx build --platform linux/amd64,linux/arm64 --push -t wutongpaas/${NAMESPACE}:${VERSION} -f Dockerfile . 
 docker buildx build --platform linux/amd64,linux/arm64 --push -t swr.cn-southwest-2.myhuaweicloud.com/wutong/${NAMESPACE}:${VERSION} -f Dockerfile . 
-docker buildx rm mybuilder
+docker buildx rm openrestybuilder
