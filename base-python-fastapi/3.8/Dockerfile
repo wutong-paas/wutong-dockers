@@ -19,6 +19,7 @@ COPY ./app /app
 WORKDIR /app/
 
 ENV PYTHONPATH=/app
+ENV TZ=Asia/Shanghai
 
 EXPOSE 8888
 
