@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM python:3.8-alpine3.10
+FROM python:3.8-alpine3.10
 
 COPY requirements.txt /tmp/requirements.txt
 RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
