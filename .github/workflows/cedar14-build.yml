@@ -1,5 +1,9 @@
 name: cedar14-build
 
+env:
+  TITLE: cedar14
+  BASE_VERSION: v1
+
 on:
   push:
     paths:
@@ -25,5 +29,11 @@ jobs:
           username: ${{ secrets.DOMESTIC_DOCKER_USERNAME }}
           password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
 
-      - name: Release
-        run: cd ./cedar14/v1 && ./build.sh
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          file: cedar14/v1/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}

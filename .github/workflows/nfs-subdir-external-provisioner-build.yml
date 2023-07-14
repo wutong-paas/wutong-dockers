@@ -1,5 +1,9 @@
 name: nfs-subdir-external-provisioner-build
 
+env:
+  TITLE: nfs-subdir-external-provisioner
+  BASE_VERSION: v4.0.2
+
 on:
   push:
     paths:
@@ -25,5 +29,11 @@ jobs:
           username: ${{ secrets.DOMESTIC_DOCKER_USERNAME }}
           password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
 
-      - name: Release
-        run: cd ./nfs-subdir-external-provisioner/v4.0.2 && ./build.sh
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          file: nfs-subdir-external-provisioner/v4.0.2/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}

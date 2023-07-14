@@ -1,5 +1,9 @@
 name: base-python-fastapi-build
 
+env:
+  TITLE: base-python-fastapi
+  BASE_VERSION: 3.8
+
 on:
   push:
     paths:
@@ -25,5 +29,11 @@ jobs:
           username: ${{ secrets.DOMESTIC_DOCKER_USERNAME }}
           password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
 
-      - name: Release
-        run: cd ./base-python-fastapi/3.8 && ./build.sh
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          file: base-python-fastapi/3.8/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}        

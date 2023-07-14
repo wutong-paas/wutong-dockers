@@ -1,5 +1,9 @@
 name: alphine-build
 
+env:
+  TITLE: alphine
+  BASE_VERSION: 3.15
+
 on:
   push:
     paths:
@@ -25,5 +29,11 @@ jobs:
           username: ${{ secrets.DOMESTIC_DOCKER_USERNAME }}
           password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
 
-      - name: Release
-        run: cd ./alphine/3.15 && ./build.sh
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          file: alphine/3.15/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}
