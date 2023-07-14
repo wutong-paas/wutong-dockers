@@ -34,6 +34,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           platforms: linux/amd64,linux/arm64
+          context: openresty/1.19.3.2-alpine
           file: openresty/1.19.3.2-alpine/Dockerfile
           push: true
           tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}
