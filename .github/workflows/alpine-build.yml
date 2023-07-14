@@ -1,13 +1,13 @@
-name: alphine-build
+name: alpine-build
 
 env:
-  TITLE: alphine
+  TITLE: alpine
   BASE_VERSION: 3.15
 
 on:
   push:
     paths:
-      - 'alphine/3.15/**'
+      - 'alpine/3.15/**'
   workflow_dispatch:
 
 jobs:
@@ -34,6 +34,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           platforms: linux/amd64,linux/arm64
-          file: alphine/3.15/Dockerfile
+          file: alpine/3.15/Dockerfile
           push: true
           tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}
