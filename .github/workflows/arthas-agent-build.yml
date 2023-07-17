@@ -1,4 +1,4 @@
-name: arthas-build
+name: arthas-agent-build
 
 env:
   TITLE: arthas-agent
