@@ -1,0 +1,40 @@
+name: pyroscope-java-agent-build
+
+env:
+  TITLE: pyroscope-java-agent
+  BASE_VERSION: v0.11.5
+
+on:
+  push:
+    paths:
+      - 'pyroscope/java-agent/v0.11.5/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to myhuaweicloud-swr
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.DOMESTIC_DOCKER_SERVER }}
+          username: ${{ secrets.DOMESTIC_DOCKER_USERNAME }}
+          password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: pyroscope/java-agent/v0.11.5
+          file: pyroscope/java-agent/v0.11.5/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}
