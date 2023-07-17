@@ -1,7 +1,7 @@
-name: arthas-build
+name: arthas-server-build
 
 env:
-  TITLE: arthas-server-build
+  TITLE: arthas-server
   BASE_VERSION: 3.6.9
 
 on:
