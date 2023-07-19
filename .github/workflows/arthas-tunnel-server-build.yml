@@ -1,13 +1,13 @@
-name: arthas-server-build
+name: arthas-tunnel-server-build
 
 env:
-  TITLE: arthas-server
+  TITLE: arthas-tunnel-server
   BASE_VERSION: 3.6.9
 
 on:
   push:
     paths:
-      - 'arthas/server/3.6.9/**'
+      - 'arthas/tunnel-server/3.6.9/**'
   workflow_dispatch:
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           platforms: linux/amd64,linux/arm64
-          context: arthas/server/3.6.9
-          file: arthas/server/3.6.9/Dockerfile
+          context: arthas/tunnel-server/3.6.9
+          file: arthas/tunnel-server/3.6.9/Dockerfile
           push: true
           tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}      
