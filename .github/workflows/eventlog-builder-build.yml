@@ -2,12 +2,13 @@ name: eventlog-builder-build
 
 env:
   TITLE: eventlog-builder
-  BASE_VERSION: v1
 
 on:
   push:
     paths:
       - 'eventlog-builder/v1/**'
+      - 'eventlog-builder/golagn1.17/**'
+      - 'eventlog-builder/golagn1.20/**'
   workflow_dispatch:
 
 jobs:
@@ -29,6 +30,7 @@ jobs:
           username: ${{ secrets.DOMESTIC_DOCKER_USERNAME }}
           password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
 
+      # deprecated v1
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v3
@@ -37,4 +39,22 @@ jobs:
           context: eventlog-builder/v1
           file: eventlog-builder/v1/Dockerfile
           push: true
-          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:v1
+      - name: Build and push
+        id: docker_build_golang1_17
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: eventlog-builder/golang1.17
+          file: eventlog-builder/golang1.17/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:golang1.17
+      - name: Build and push
+        id: docker_build_golang1_20
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: eventlog-builder/golang1.20
+          file: eventlog-builder/golang1.20/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:golang1.20

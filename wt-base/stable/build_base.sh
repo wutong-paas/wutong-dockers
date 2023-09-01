@@ -8,9 +8,9 @@ build::base() {
 	local BASE_IMAGE_NAME="wt-$1-base:stable"
 	pushd "$1"
 	echo "---> build image:$BASE_IMAGE_NAME"
-	docker buildx use mybuilder || docker buildx create --use --name mybuilder
+	docker buildx use swrbuilder || docker buildx create --use --name swrbuilder
 	docker buildx build --platform linux/amd64,linux/arm64 --push -t $WUTONG_REGISTRY/$BASE_IMAGE_NAME .
-	# docker buildx rm mybuilder
+	# docker buildx rm swrbuilder
 	popd
 }
 
