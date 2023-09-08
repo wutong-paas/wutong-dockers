@@ -6,9 +6,10 @@ env:
 on:
   push:
     paths:
-      - 'eventlog-builder/v1/**'
-      - 'eventlog-builder/golagn1.17/**'
-      - 'eventlog-builder/golagn1.20/**'
+      - "eventlog-builder/v1/**"
+      - "eventlog-builder/golagn1.17/**"
+      - "eventlog-builder/golagn1.20/**"
+      - "eventlog-builder/golagn1.21/**"
   workflow_dispatch:
 
 jobs:
@@ -58,3 +59,12 @@ jobs:
           file: eventlog-builder/golang1.20/Dockerfile
           push: true
           tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:golang1.20
+      - name: Build and push
+        id: docker_build_golang1_21
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: eventlog-builder/golang1.21
+          file: eventlog-builder/golang1.21/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:golang1.21
