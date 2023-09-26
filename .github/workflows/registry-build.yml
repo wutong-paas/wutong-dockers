@@ -7,7 +7,7 @@ env:
 on:
   push:
     paths:
-      - 'registry/2.6.2/**'
+      - "registry/2.6.2/**"
   workflow_dispatch:
 
 jobs:

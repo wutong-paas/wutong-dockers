@@ -6,7 +6,7 @@ env:
 on:
   push:
     paths:
-      - 'wt-base/stable/**'
+      - "wt-base/stable/**"
   workflow_dispatch:
 
 jobs:
@@ -29,6 +29,16 @@ jobs:
           password: ${{ secrets.DOMESTIC_DOCKER_PASSWORD }}
 
       - name: Build and push
+        id: docker_build_api_base
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: wt-base/stable/api
+          file: wt-base/stable/api/Dockerfile
+          push: true
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/wt-api-base:${{ env.BASE_VERSION }}
+
+      - name: Build and push
         id: docker_build_chaos_base
         uses: docker/build-push-action@v3
         with:
@@ -37,7 +47,7 @@ jobs:
           file: wt-base/stable/chaos/Dockerfile
           push: true
           tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/wt-chaos-base:${{ env.BASE_VERSION }}
-    
+
       - name: Build and push
         id: docker_build_eventlog_base
         uses: docker/build-push-action@v3
@@ -66,4 +76,4 @@ jobs:
           context: wt-base/stable/mesh-data-panel
           file: wt-base/stable/mesh-data-panel/Dockerfile
           push: true
-          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/wt-mesh-data-panel-base:${{ env.BASE_VERSION }}                    
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/wt-mesh-data-panel-base:${{ env.BASE_VERSION }}

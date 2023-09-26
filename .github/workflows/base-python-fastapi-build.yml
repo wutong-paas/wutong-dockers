@@ -7,7 +7,7 @@ env:
 on:
   push:
     paths:
-      - 'base-python-fastapi/3.8/**'
+      - "base-python-fastapi/3.8/**"
   workflow_dispatch:
 
 jobs:
@@ -37,4 +37,4 @@ jobs:
           context: base-python-fastapi/3.8
           file: base-python-fastapi/3.8/Dockerfile
           push: true
-          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}        
+          tags: ${{ secrets.DOMESTIC_DOCKER_SERVER }}/wutong/${{ env.TITLE }}:${{ env.BASE_VERSION }}

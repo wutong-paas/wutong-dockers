@@ -7,7 +7,7 @@ env:
 on:
   push:
     paths:
-      - 'openresty/1.19.3.2-alpine/**'
+      - "openresty/1.19.3.2-alpine/**"
   workflow_dispatch:
 
 jobs:

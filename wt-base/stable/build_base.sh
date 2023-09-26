@@ -2,7 +2,7 @@
 set -o errexit
 WUTONG_REGISTRY=${WUTONG_REGISTRY:-'swr.cn-southwest-2.myhuaweicloud.com/wutong'}
 
-base_items=(chaos eventlog gateway mesh-data-panel)
+base_items=(api chaos eventlog gateway mesh-data-panel)
 
 build::base() {
 	local BASE_IMAGE_NAME="wt-$1-base:stable"
