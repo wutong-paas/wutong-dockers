@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ -z "$EDGE_CLUSTER_CODE" ]; then
-  echo "CLUSTER_CODE is not set. Exiting..."
+if [ -z "$EDGE_ISOLATED_CLUSTER_CODE" ]; then
+  echo "EDGE_ISOLATED_CLUSTER_CODE is not set. Exiting..."
   exit 1
 fi
 
@@ -21,7 +21,7 @@ echo "🟢 telepresence connect done."
 
 echo "🕓 telepresence intercept..."
 
-telepresence intercept $EDGE_CLUSTER_CODE-wt-api --address $WT_API_API_INNER_SERVICE_HOST --port 8888 || \
+telepresence intercept $EDGE_ISOLATED_CLUSTER_CODE-wt-api --address $WT_API_API_INNER_SERVICE_HOST --port 8888 || \
 { echo "🔴 telepresence intercept failed. Exiting..." ; exit 1; }
 
 echo "🟢 telepresence intercept done."
