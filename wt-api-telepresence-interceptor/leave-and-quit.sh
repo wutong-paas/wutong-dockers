@@ -6,8 +6,7 @@ if [ -z "$EDGE_ISOLATED_CLUSTER_CODE" ]; then
 fi
 
 echo "🕓 telepresence leave..."
-telepresence leave $EDGE_ISOLATED_CLUSTER_CODE-wt-api-http
-telepresence leave $EDGE_ISOLATED_CLUSTER_CODE-wt-api-ws
+telepresence leave $EDGE_ISOLATED_CLUSTER_CODE-wt-api
 echo "🟢 telepresence leave done."
 
 echo "🕓 telepresence quit..."

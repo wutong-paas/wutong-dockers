@@ -21,11 +21,8 @@ echo "🟢 telepresence connect done."
 
 echo "🕓 telepresence intercept..."
 
-telepresence intercept $EDGE_ISOLATED_CLUSTER_CODE-wt-api-http --address $WT_API_API_INNER_SERVICE_HOST --port 8888 || \
-{ echo "🔴 telepresence intercept wt-api-http failed. Exiting..." ; exit 1; }
-
-telepresence intercept $EDGE_ISOLATED_CLUSTER_CODE-wt-api-ws --address $WT_API_API_INNER_SERVICE_HOST --port 6060 || \
-{ echo "🔴 telepresence intercept wt-api-ws failed. Exiting..." ; exit 1; }
+telepresence intercept $EDGE_ISOLATED_CLUSTER_CODE-wt-api --address $WT_API_API_INNER_SERVICE_HOST --port 8888 || \
+{ echo "🔴 telepresence intercept wt-api failed. Exiting..." ; exit 1; }
 
 echo "🟢 telepresence intercept done."
 
