@@ -12,3 +12,7 @@ echo "🟢 telepresence leave done."
 echo "🕓 telepresence quit..."
 telepresence quit -s
 echo "🟢 telepresence quit done."
+
+echo "🕓 rollout restart traffic-manager..."
+kubectl rollout restart -n ambassador deployment traffic-manager
+echo "🟢 rollout restart traffic-manager done."
