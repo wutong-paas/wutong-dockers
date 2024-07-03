@@ -6,7 +6,7 @@ CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o bin/wt-api-agent-reverse-proxy
 
 export NAMESPACE=wt-api-agent-reverse-proxy
 export VERSION=latest
-docker buildx use swrbuilder || docker buildx use swrbuilder || docker buildx create --use --name swrbuilder --driver docker-container --driver-opt image=swr.cn-southwest-2.myhuaweicloud.com/wutong/buildkit:stable
+docker buildx use swrbuilder || docker buildx create --use --name swrbuilder --driver docker-container --driver-opt image=swr.cn-southwest-2.myhuaweicloud.com/wutong/buildkit:stable
 
 docker buildx build --platform linux/amd64,linux/arm64 --push -t swr.cn-southwest-2.myhuaweicloud.com/wutong/${NAMESPACE}:${VERSION} -f Dockerfile . 
 # docker buildx rm swrbuilder
