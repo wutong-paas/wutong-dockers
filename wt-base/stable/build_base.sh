@@ -2,7 +2,7 @@
 set -o errexit
 WUTONG_REGISTRY=${WUTONG_REGISTRY:-'swr.cn-southwest-2.myhuaweicloud.com/wutong'}
 
-base_items=(api)
+base_items=(mesh-data-panel)
 
 build::base() {
 	local BASE_IMAGE_NAME="wt-$1-base:stable"
