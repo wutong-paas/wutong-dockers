@@ -1,0 +1,1 @@
+FROM quay.io/kubevirt/virtio-container-disk:v1.4.0
