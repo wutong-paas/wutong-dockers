@@ -1,0 +1,1 @@
+FROM --platform=$TARGETPLATFORM wangbowen/kkfileview:4.4.0
